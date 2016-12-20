@@ -1,6 +1,6 @@
 function p = nn3Predict(Theta1, Theta2, Theta3, X)
-%PREDICT Predict the label of an input given a trained neural network
-%   p = PREDICT(Theta1, Theta2, Theta3, X) outputs the predicted label of X 
+%NN3PREDICT Predict the label of an input given a trained neural network
+%   p = NN3PREDICT(Theta1, Theta2, Theta3, X) outputs the predicted label of X 
 %   given the trained weights of a neural network (Theta1, Theta2, Theta3)
 
 X = [ones(size(X, 1), 1) X];
