@@ -42,7 +42,7 @@ X = [ones(m, 1) X];
 z2 = X * Theta1';
 a2 = [ones(size(z2, 1), 1) sigmoid(z2)];
 z3 = a2 * Theta2';
-a3 = [ones(size(z2, 1), 1) sigmoid(z3)];
+a3 = [ones(size(z3, 1), 1) sigmoid(z3)];
 z4 = a3 * Theta3';
 h = sigmoid(z4);
 

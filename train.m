@@ -15,7 +15,7 @@ initial_Theta2 = randInitializeWeights(hidden_layer1_size, hidden_layer2_size);
 initial_Theta3 = randInitializeWeights(hidden_layer2_size, num_labels);
 
 % Unroll parameters
-initial_nn_params = [initial_Theta1(:) ; initial_Theta2(:) ; initial_Theta3(:)];
+initial_nn_params = [initial_Theta1(:) ; initial_Theta2(:) ; initial_Theta3(:) ];
 
 % Create "short hand" for the cost function to be minimized
 costFunction = @(p) nn3CostFunction(p, ...
@@ -36,9 +36,11 @@ end_theta2 = ((hidden_layer1_size * (input_layer_size + 1))) + ...
                     hidden_layer2_size * (hidden_layer1_size + 1);
                     
 Theta2 = reshape(nn_params((1 + (hidden_layer1_size * (input_layer_size + 1))):end_theta2), ...
-                 hidden_layer2_size, (hidden_layer1_size + 1));
-
-Theta3 = reshape(nn_params((1 + end_theta2):end), num_labels, (hidden_layer2_size + 1));
+                 hidden_layer2_size, (hidden_layer1_size + 1));               
+                 
+Theta3 = reshape(nn_params((1 + end_theta2):end), ...
+                  num_labels, (hidden_layer2_size + 1));
+                  
 
                  
 save('-binary', 'weights.mat', 'Theta1', 'Theta2', 'Theta3');
