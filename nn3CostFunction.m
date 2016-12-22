@@ -40,9 +40,9 @@ Theta3_grad = zeros(size(Theta3));
 % forward propigation
 X = [ones(m, 1) X];
 z2 = X * Theta1';
-a2 = [ones(size(z2, 1), 1) sigmoid(z2)];
+a2 = [ones(m, 1) sigmoid(z2)];
 z3 = a2 * Theta2';
-a3 = [ones(size(z3, 1), 1) sigmoid(z3)];
+a3 = [ones(m, 1) sigmoid(z3)];
 z4 = a3 * Theta3';
 h = sigmoid(z4);
 
@@ -61,16 +61,16 @@ J += lambda / (2 * m) * (sum(sum(t1 .^ 2)) + sum(sum(t2 .^ 2)) + sum(sum(t3 .^ 2
 
 % compute gradient
 err4 = h - y;
-err3 = (err4*Theta3 .* sigmoidGradient([ones(size(z3, 1), 1) z3]))(:, 2:end);
-err2 = (err3*Theta2 .* sigmoidGradient([ones(size(z2, 1), 1) z2]))(:, 2:end);
+err3 = (err4*Theta3 .* sigmoidGradient([ones(m, 1) z3]))(:, 2:end);
+err2 = (err3*Theta2 .* sigmoidGradient([ones(m, 1) z2]))(:, 2:end);
 
-Theta1_grad = err2' * X;
-Theta2_grad = err3' * a2;
-Theta3_grad = err4' * a3;
+%Theta1_grad = err2' * X;
+%Theta2_grad = err3' * a2;
+%Theta3_grad = err4' * a3;
 
-Theta1_grad = Theta1_grad / m + lambda * [zeros(hidden_layer1_size, 1) t1] / m;
-Theta2_grad = Theta2_grad / m + lambda * [zeros(hidden_layer2_size, 1) t2] / m;
-Theta3_grad = Theta3_grad / m + lambda * [zeros(num_labels, 1) t3] / m;
+Theta1_grad = err2' * X / m + lambda * [zeros(hidden_layer1_size, 1) t1] / m;
+Theta2_grad = err3' * a2 / m + lambda * [zeros(hidden_layer2_size, 1) t2] / m;
+Theta3_grad = err4' * a3 / m + lambda * [zeros(num_labels, 1) t3] / m;
 
 % =========================================================================
 

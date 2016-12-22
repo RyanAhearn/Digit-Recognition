@@ -8,7 +8,7 @@ num_labels = 10; % note: 0 is maped to 1, 1 to 2, ... 9 to 10
 
 load('trainData.mat');
 
-lambda = 3;
+lambda = 30;
 
 initial_Theta1 = randInitializeWeights(input_layer_size, hidden_layer1_size);
 initial_Theta2 = randInitializeWeights(hidden_layer1_size, hidden_layer2_size);
@@ -24,7 +24,7 @@ costFunction = @(p) nn3CostFunction(p, ...
                                     hidden_layer2_size, ...
                                     num_labels, X, y, lambda);
                                    
-options = optimset('MaxIter', 100);
+options = optimset('MaxIter', 200);
 
 [nn_params, cost] = fmincg(costFunction, initial_nn_params, options);
 
