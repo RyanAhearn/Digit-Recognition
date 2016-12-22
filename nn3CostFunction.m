@@ -15,8 +15,8 @@ function [J grad] = nn3CostFunction(nn_params, ...
 %   partial derivatives of the neural network.
 %
 
-% Reshape nn_params back into the parameters Theta1 and Theta2, the weight matrices
-% for our 2 layer neural network
+% Reshape nn_params back into the parameters Theta1, Theta2 and Theta3, the 
+% weight matrices for our 3 layer neural network
 Theta1 = reshape(nn_params(1:hidden_layer1_size * (input_layer_size + 1)), ...
                  hidden_layer1_size, (input_layer_size + 1));
 
